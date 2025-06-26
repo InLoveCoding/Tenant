@@ -1,12 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Tenant.Infrustracture.Data
 {
-    public class TenantDBContext
+    public class TenantDBContext : DbContext
     {
+
+        public TenantDBContext(DbContextOptions<TenantDBContext> options) : base(options)
+        {
+        }
+
+        public virtual DbSet<Domain.Tenant.Entities.Tenant> Tenants { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            //todo
+        }
     }
 }
